@@ -9,7 +9,6 @@ MysqlConnect.js Dit is een node.js scriptje (dus zorg dat je het runt met nodejs
 
 `npm i serialport @serialport/parser-readline mysql` \
 De website code:
-
-
+De website code is geschreven in een combi van javascript en php. De website bestaat uit een simpele login pagina met daarna de inhoud van de sensoren samen met het advies tot actie.
 
 
