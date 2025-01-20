@@ -130,6 +130,8 @@ $user = $_SESSION['user'];
                         $co2_waarschuwing = '<div class="alert alert-danger text-center">Ventileren noodzakelijk! Negatieve gezondheidseffecten.</div>';
                     } elseif ($row['co2'] <= 5000) {
                         $co2_waarschuwing = '<div class="alert alert-danger text-center">Ventileren noodzakelijk! Gevaarlijk bij langdurige blootstelling!</div>';
+                    } elseif ($row['co2'] <= 6000) {
+                        $co2_waarschuwing = '<div class="alert alert-danger text-center">Ik heb goed nieuws, u gaat dood!</div>';
                     }
 
                     // Luchtvochtigheid waarschuwing bepalen
