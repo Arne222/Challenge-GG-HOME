@@ -50,6 +50,16 @@ $user = $_SESSION['user'];
             background-color: #dc3545;
             border: none;
         }
+        .alert-success {
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+        }
+        .alert-warning {
+            color: #fff;
+            background-color: #ffc107;
+            border: none;
+        }
         .footer {
             background-color: #e9ecef;
             padding: 15px;
@@ -111,11 +121,11 @@ $user = $_SESSION['user'];
                     } elseif ($row['co2'] <= 600) {
                         $co2_waarschuwing = '<div class="alert alert-success text-center">Gezond binnenklimaat.</div>';
                     } elseif ($row['co2'] <= 800) {
-                        $co2_waarschuwing = '<div class="alert alert-info text-center">Acceptabel niveau.</div>';
+                        $co2_waarschuwing = '<div class="alert alert-success text-center">Acceptabel niveau.</div>';
                     } elseif ($row['co2'] <= 1000) {
                         $co2_waarschuwing = '<div class="alert alert-warning text-center">Ventileren gewenst.</div>';
                     } elseif ($row['co2'] <= 1200) {
-                        $co2_waarschuwing = '<div class="alert alert-warning text-center">Ventileren noodzakelijk!</div>';
+                        $co2_waarschuwing = '<div class="alert alert-danger text-center">Ventileren noodzakelijk!</div>';
                     } elseif ($row['co2'] <= 2000) {
                         $co2_waarschuwing = '<div class="alert alert-danger text-center">Ventileren noodzakelijk! Negatieve gezondheidseffecten.</div>';
                     } elseif ($row['co2'] <= 5000) {
@@ -128,6 +138,16 @@ $user = $_SESSION['user'];
                         $ventilatie_waarschuwing = '<div class="alert alert-danger text-center">Ventileren noodzakelijk!</div>';
                     } elseif ($row['luchtvochtigheid'] >= 40 && $row['luchtvochtigheid'] <= 60) {
                         $ventilatie_waarschuwing = '<div class="alert alert-success text-center">De luchtvochtigheid is goed.</div>';
+                    }
+
+                    // Temperatuur waarschuwing bepalen
+                    $temperatuur_waarschuwing = '';
+                    if ($row['temperatuur'] < 18) {
+                        $temperatuur_waarschuwing = '<div class="alert alert-danger text-center">Het is te koud, verwarm de ruimte!</div>';
+                    } elseif ($row['temperatuur'] > 21) {
+                        $temperatuur_waarschuwing = '<div class="alert alert-danger text-center">Het is te warm, koel de ruimte!</div>';
+                    } elseif ($row['temperatuur'] >= 17 && $row['temperatuur'] <= 22) {
+                        $temperatuur_waarschuwing = '<div class="alert alert-success text-center">De Binnenhuistemperatuur is goed.</div>';
                     }
 
                     echo "<div class='col-md-4'>";
@@ -157,6 +177,7 @@ $user = $_SESSION['user'];
                     echo "            <p class='card-text'>" . htmlspecialchars($row['temperatuur']) . "°C</p>";
                     echo "        </div>";
                     echo "    </div>";
+                    echo $temperatuur_waarschuwing; // Temperatuur waarschuwing toevoegen
                     echo "</div>";
                 }
             } else {
